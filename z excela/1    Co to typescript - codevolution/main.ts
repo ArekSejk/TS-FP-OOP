@@ -55,7 +55,7 @@ let dupa: unknown = 10; //any nie zglosi bledu gdy ja wywolam jak funkcje, lub n
 
 // user defined type guard
 
-//zrobimy funkcje ktira spr cos tam w mojej zmiennej
+//zrobimy funkcje ktora spr cos tam w mojej zmiennej
 
 let mojaZmienna: unknown = 10;
 
