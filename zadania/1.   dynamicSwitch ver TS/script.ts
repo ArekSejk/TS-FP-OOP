@@ -44,7 +44,7 @@ interface ISwitch {
 }
 
 class Switch2 implements ISwitch {
-    cases: Array<{ condition: boolean, callbackFn: () => void, /*propert3: string*/ }> = [];
+    cases: Array<{ condition: boolean, callbackFn: () => void }> = [];
     conditions: boolean[] = [];
 
     constructor() { }
@@ -105,10 +105,3 @@ test1.isValid();
 console.log('cases PO:', test1.cases)
 console.log("condi PO:", test1.conditions)
 console.log('is Empty PO', test1.isEmpty())
-
-
-
-/* Pytania:
-- Dlaczego w typowaniu arrayow w klasie dodalem 3 property choc w interface byly 2, i nie ma bledu?
-- Dlaczego w classie jak zastosuje dodatkowy parametr poza interfacem to nie wyskakuje blad.  w klasach interfacy nie okreslaja wszystkiego od a do z?
-*/

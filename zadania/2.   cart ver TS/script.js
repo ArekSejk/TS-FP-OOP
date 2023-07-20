@@ -17,6 +17,14 @@ var Item = /** @class */ (function () {
         this.discountValue = discountValue;
         this.discountedPrice = this.price - this.discountValue;
     }
+    Item.prototype.change = function (key, newValue) {
+        var index;
+        index = Object.keys(this).findIndex(function (el) { return el === key; });
+        this["".concat(key)] = newValue;
+        // lub
+        // this[index]= newValue;
+        //W JS by dzialalo ale w TS nie:(
+    };
     Item.prototype.setDiscountValue = function (newValue) {
         this.discountValue = newValue;
         this.discountedPrice = this.price - this.discountValue;
@@ -29,13 +37,15 @@ var Item = /** @class */ (function () {
 var item1 = new Item("Dzbanek", 50, 10);
 var item2 = new Item("Mydło", 5, 0);
 var item3 = new Item("mop", 30, 10);
-// type PropToChange = 'name' | 'price' | 'discount' | 'category'; //do wszechstronnej metody zmiany all props change
-// type Value = string | number;
+item1.change("price", 9999);
+console.log(item1);
 var Cart = /** @class */ (function () {
     function Cart() {
         this.selectedProdsList = [];
         this.discountCodeValue = 0;
         this.cartDiscountValue = 0;
+        this.name = '';
+        this.age = 0;
         this.uuid = Math.floor(Math.random() * 1000000000000);
     }
     Cart.prototype.addProduct = function (product) {
@@ -82,6 +92,6 @@ var Ziom = /** @class */ (function () {
     return Ziom;
 }());
 var arek = new Ziom('Arek', 20);
-console.log(arek.name);
-console.log(arek.age);
-console.log(Object.keys(arek)[0] === "name");
+// console.log(arek.getName())
+// console.log(arek.age)
+// console.log(Object.keys(arek)[0] === "name")

@@ -61,7 +61,11 @@ interface InterItem {
     changePrice: (newValue: number) => void;
     setDiscountValue: (newValue: number) => void;
     setCategory: (newValue: string) => void;
+    //change: (key: PropToChange, newValue: Value) => void; //do wszechstronnej metody zmiany all props change
 }
+
+type wlasciwoscZmieniana = 'name' | 'price' | 'category' | "discountValue";
+type Value = string | number;
 
 class Item implements InterItem {
     uuid: number;
@@ -78,6 +82,20 @@ class Item implements InterItem {
         this.price = price;
         this.discountValue = discountValue;
         this.discountedPrice = this.price - this.discountValue;
+    }
+
+
+    change(key: wlasciwoscZmieniana, newValue: Value) {
+
+        let index: number;
+        index = Object.keys(this).findIndex(el => el === key)
+
+
+         this[`${key}`] = newValue;
+        // lub
+        // this[index]= newValue;
+        //W JS by dzialalo ale w TS nie:(
+
     }
 
     changeName = (newValue: string) => {
@@ -100,6 +118,13 @@ const item2 = new Item("Mydło", 5, 0);
 const item3 = new Item("mop", 30, 10)
 
 
+item1.change("price", 9999)
+
+console.log(item1)
+
+
+
+
 interface InterCart {
     uuid: number;
     selectedProdsList: Array<{ prodInCart: Item, quantity: number }>;
@@ -111,19 +136,19 @@ interface InterCart {
     setDiscountCode: (discountCodeValue: number) => void;
     setCartDiscount: (cartDiscountValue: number) => void;
     countCartValue: () => number;
-    //change: (key: PropToChange, newValue: Value) => void; //do wszechstronnej metody zmiany all props change
 }
 
 
-// type PropToChange = 'name' | 'price' | 'discount' | 'category'; //do wszechstronnej metody zmiany all props change
-// type Value = string | number;
 
 
-class Cart implements InterCart {
+
+class Cart {
     uuid: number;
     selectedProdsList: Array<{ prodInCart: Item, quantity: number }> = [];
     discountCodeValue: number = 0;
     cartDiscountValue: number = 0;
+    name: string = ''
+    age: number = 0
 
     constructor() {
         this.uuid = Math.floor(Math.random() * 1000000000000);
@@ -161,15 +186,6 @@ class Cart implements InterCart {
     countCartValue() {
         return ((this.selectedProdsList.map(e => e.quantity * e.prodInCart.discountedPrice).reduce((acc, prev) => acc + prev)) - (this.discountCodeValue + this.cartDiscountValue));
     }
-
-    // change(key: PropToChange, newValue: Value) { //do wszechstronnej metody zmiany all props change
-    //        //this.key = newValue;
-        
-    //     // const index = Object.keys(this).findIndex(el => el === key);
-    //     // this[index] = newValue;
-    // }
-
-
 }
 // const koszyk1 = new Cart();
 // koszyk1.addProduct(item1)
@@ -205,12 +221,12 @@ class Cart implements InterCart {
 */
 
 interface Test {
-    name: string;
+    getName: () => string
 }
 
 class Ziom implements Test {
 
-    constructor(public name: string, public age: number) { }
+    constructor(private name: string, public age: number) { }
 
     getName() {
         return this.name;
@@ -218,7 +234,8 @@ class Ziom implements Test {
 }
 
 const arek = new Ziom('Arek', 20)
-console.log(arek.name)
-console.log(arek.age)
+// console.log(arek.getName())
+// console.log(arek.age)
 
-console.log(Object.keys(arek)[0]=== "name")
+// console.log(Object.keys(arek)[0] === "name")
+
