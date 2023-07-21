@@ -44,7 +44,23 @@ class Email implements IEmail {
 }
 
 
-class EmailBuilder {
+interface IEmailBuilder {
+    from: string;               // 1. (TS) Zadeklarowalem kazda wasciwosc
+    to: string;
+    title: string;
+    cc: string[];
+    bcc: string[];
+    html: string;
+    setFrom: (from: string) => Email;
+    setTo: (to: string) => Email;
+    setTitle: (title: string) => Email;
+    setCC: (cc: string[]) => Email;
+    setBCC: (bcc: string[]) => Email;
+    setHTML: (html: string) => Email;
+    build: () => Email;
+}
+
+class EmailBuilder implements IEmailBuilder {
     from: string;               // 1. (TS) Zadeklarowalem kazda wasciwosc
     to: string;
     title: string;
