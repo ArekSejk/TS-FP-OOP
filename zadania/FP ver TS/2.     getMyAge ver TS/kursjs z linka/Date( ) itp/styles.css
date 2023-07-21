@@ -1,0 +1,19 @@
+div {
+    margin: 50px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+h3 {
+    color: rgb(50, 50, 50);
+}
+.time-container {
+    font-size: 1em;
+}
+
+.live-time {
+    color: red;
+    font-size: 1.2em;
+}
+
+.nazwa-dnia {
+    margin: 20px;
+}

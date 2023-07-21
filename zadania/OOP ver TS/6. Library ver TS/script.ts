@@ -48,7 +48,7 @@ interface IUser {
 }
 
 
-class User {
+class User implements IUser {
     name: string;
     lastName: string;
     uuid: number;
@@ -70,7 +70,7 @@ interface IBook {
     description: string;
 }
 
-class Book {
+class Book implements IBook {
     title: string;
     author: string;
     uuid: number;
@@ -103,7 +103,7 @@ interface IBooking {
 }
 
 
-class Booking {
+class Booking implements IBooking {
     borrowedBookList: Book[] = [];
 
     user: User;
@@ -158,15 +158,15 @@ class Booking {
     }
 }
 
-const book1 = new Book('Pan Tadeusz', 'A.Mickiewicz', 'panTad.jpg', 'Dawno,dawno temu..')
-const book2 = new Book('Potop', 'H.Sienkiewicz', 'hSienk.jpg', 'Byly sobie swinki 3...')
-const book3 = new Book('Marysieńka', 'A.Kopacka', 'aKop.jpg', 'Marysia była bardzo...')
+// const book1 = new Book('Pan Tadeusz', 'A.Mickiewicz', 'panTad.jpg', 'Dawno,dawno temu..')
+// const book2 = new Book('Potop', 'H.Sienkiewicz', 'hSienk.jpg', 'Byly sobie swinki 3...')
+// const book3 = new Book('Marysieńka', 'A.Kopacka', 'aKop.jpg', 'Marysia była bardzo...')
 
-const booking1 = new Booking('Marek', 'Kondrad')
+// const booking1 = new Booking('Marek', 'Kondrad')
 
 
-booking1.addBookToBorrowedList(book1)
-booking1.addBookToBorrowedList(book2)
+// booking1.addBookToBorrowedList(book1)
+// booking1.addBookToBorrowedList(book2)
 // booking1.addBookToBorrowedList(book3)
 
 // console.log(...booking1.borrowedBookList)
@@ -179,7 +179,7 @@ interface ILibrary {
     bookingsList: Booking[];
     userList: User[];
 
-    findBookIndex: (bookTitle: string, list: Book[]) => number;
+    findBookIndex: (bookTitle: string, list: Ksiazka[]) => number;
     addBookToLibrary: (book: Book) => void;
     addBookToAvailableList: (bookTitle: string) => void;
     deleteBookFromLibrary: (bookTitle: string) => void;
@@ -190,7 +190,7 @@ interface ILibrary {
 
 
 
-class Library {
+class Library implements ILibrary {
     allLibraryBookList: Ksiazka[] = [];
     availableBookList: Ksiazka[] = [];
     bookingsList: Booking[] = [];
@@ -217,7 +217,10 @@ class Library {
     addBookToAvailableList(bookTitle: string) {
         const bookIndexInAvailables = this.findBookIndex(bookTitle, this.availableBookList);
 
-        if (bookIndexInAvailables !== -1) return this.availableBookList[bookIndexInAvailables].quantity++;
+        if (bookIndexInAvailables !== -1) {
+            this.availableBookList[bookIndexInAvailables].quantity++
+            return
+        };
 
         const bookIndexInAllbooks = this.findBookIndex(bookTitle, this.allLibraryBookList);
 
@@ -296,12 +299,12 @@ class Library {
         this.bookingsList.splice(findBookingIndex, 1)
     }
 }
-const biblioteka = new Library();
+// const biblioteka = new Library();
 
-biblioteka.addBookToLibrary(book1)
-biblioteka.addBookToLibrary(book2)
-biblioteka.addBookToLibrary(book3)
-biblioteka.addBookToLibrary(book3)
+// biblioteka.addBookToLibrary(book1)
+// biblioteka.addBookToLibrary(book2)
+// biblioteka.addBookToLibrary(book3)
+// biblioteka.addBookToLibrary(book3)
 
 // console.log(...biblioteka.availableBookList)
 

@@ -1,0 +1,12 @@
+div {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
+}
+
+.counting {
+    font-weight: bold;
+    font-size: 1.5em;
+    color: rgb(9, 112, 112);
+    text-shadow: 1px 1px 1px gray;
+    text-transform: uppercase;
+}
