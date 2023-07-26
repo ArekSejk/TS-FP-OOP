@@ -9,18 +9,19 @@ function mapFn(array, callback) {}
 function filterFn(array, callback) {}
 function everyFn(array, callback) {}
 function someFn(array, callback) {}*/
-// type DoLikeMap = <T>(array: T[], callbackFunction: CallbackLikeMap) => T[];
-// function doLikeMap<T>(arr: T[], callbackFn: (curr: T, i: number, arr: T[]) => T): T[] { DZIALA
+//--------------------------------------------------------------------
+// // MAP
+//Zwraca nową tabele ze zmodyfikowanymi elementami  map(callback(el, index, arr), thisArg)
 function doLikeMap(arr, callbackFn) {
     return arr.reduce(function (acc, currVal, i, arr) {
         acc.push(callbackFn(currVal, i, arr));
         return acc;
     }, []);
 }
-function square(el, i, arr) {
-    return el.toUpperCase();
-}
-console.log(doLikeMap(['a', 'b', 'c'], square));
+// function square(el) {
+//     return el.toUpperCase();
+// }
+//Pytanie: Czy moge nie typowac 2 i 3 param. w reduce jak teraz czy przepisywac?
 // // FILTER
 //Zwraca nową tablicę z elementami, które spełniają warunek
 function doLikeFilter(arr, callbackFn) {
@@ -30,21 +31,11 @@ function doLikeFilter(arr, callbackFn) {
         return acc;
     }, []);
 }
-// const tab = [0, 1, 5, 10, 22]
-// const tab2 = ['marek', 'Jola', 'ala', 'Roman']
-// const filtrowanie = tab.filter((el) => el % 2 === 0)
-// console.log('.filter',filtrowanie)
-// function janusz(el) {
-//     return el % 2 === 0;
-// }
 // function marek(el) {
-//     return el[0] == el[0].toUpperCase();
+//     return el[0] === el[0].toUpperCase();
 // }
-// console.log('mojaFn', doLikeFilter(tab, janusz))
-// console.log(doLikeFilter(tab2, marek))
 // // EVERY
-// Zwraca boolean dla dopasowania wszystkich elementow tablicy
-//arr.every(callbacFn(element,index,arr))
+// Zwraca boolean dla dopasowania wszystkich elementow tablicy      arr.every(callbacFn(element,index,arr))
 function doLikeEvery(arr, callbackFn) {
     return arr.reduce(function (acc, currVal, i, arr) {
         if (!callbackFn(currVal, i, arr))
@@ -52,16 +43,12 @@ function doLikeEvery(arr, callbackFn) {
         return acc;
     }, true);
 }
-// tab = [1, 2, 4, 6]
-// tab2 = [2, 4, 6, 8]
-//console.log(tab2.every(el=> el%2 ==0))
-// function czyParzyste(el) {
+// function czyWszystkieParzyste(el: number) {
 //     return el % 2 == 0;
 // }
-// console.log(doLikeEvery(tab, czyParzyste))
+//Pytanie: czy jest potrzeba typowania acc jesli wart.poczatkowa dalismy true i sam wywnioskowal?
 // // SOME
-// Zwraca boolean dla dopasowania choć jednego elementu z tablicy
-// array.some(callbackFn(element,index,arr))
+// Zwraca true gdy choć 1 elem arr spelnia.         array.some(callbackFn(element,index,arr))
 function doLikeSome(arr, callbackFn) {
     return arr.reduce(function (acc, currVal, i, arr) {
         if (callbackFn(currVal, i, arr))
@@ -69,10 +56,6 @@ function doLikeSome(arr, callbackFn) {
         return acc;
     }, false);
 }
-// tab = [1, 3, 4, 7]
-// tab2 = [1, 3, 5, 1]
-//console.log(tab2.some((el => el % 2 == 0)))
-// function one(el) {
+// function one(el:number) {
 //     return el % 2 == 0;
 // }
-// console.log(doLikeSome(tab, one))
