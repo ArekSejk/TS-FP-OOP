@@ -9,10 +9,7 @@ const aggregateIntoChunks = (array) => {
 
 const chunks = aggregateIntoChunks(alphabet);// chunks: [[a,b,c,d,e,f],[g,h,i,j,k],[l,m,n,o,p,r,s],[t,u,w,x,y,z]]
 ---------------------------------------------------------------*/
-var alphabet = "abcdefghijklmnoprstuwxyz".split("");
-var alphabet2 = "12345678901".split("");
-var alphabet3 = "abcdefghijklmnoprstuwxyz12345678901234567890".split("");
-var aggregateIntoChunks = function (arr) {
+function aggregateIntoChunks(arr) {
     var _a, _b;
     if (arr.length < 4)
         return 'za krotki array';
@@ -41,5 +38,20 @@ var aggregateIntoChunks = function (arr) {
         }
     }
     return newArr;
-};
-console.log(aggregateIntoChunks(alphabet));
+}
+// const alphabet = "abcdefghijklmnoprstuwxyz".split("");
+// const alphabet2 = "12345678901".split("");
+// const alphabet3 = "abcdefghijklmnoprstuwxyz12345678901234567890".split("");
+//  console.log(aggregateIntoChunks(alphabet))
+// Rozwiazanie poprzednie- dzialajace ale za duza losowosc (moze zamulic)
+//PIERWOTNIE MIALEM PONIZSZE ROZWIAZANIE dalsze, dzialalo, ale bylo zbyt randomowe i czasami sie nie znajdywaly
+// while (!warunek) {
+//     let przedostatni = 0;
+// let ostatni = 0;
+// do {
+//     przedostatni = Math.floor(Math.random() * (max - min + 1) + min);
+//     ostatni = Math.floor(Math.random() * (max - min + 1) + min);
+// } while (((przedostatni + ostatni) !== (arr.length - skumulowane) || przedostatni < min || przedostatni > max || ostatni < min || ostatni > max));
+// newArr.push(arr.slice(skumulowane, skumulowane + przedostatni));
+// newArr.push(arr.slice(skumulowane + przedostatni,))
+//}

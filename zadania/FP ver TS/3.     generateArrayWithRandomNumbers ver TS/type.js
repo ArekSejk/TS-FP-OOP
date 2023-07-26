@@ -29,9 +29,3 @@ var generateArrayOfArrays = function (howManyArrays, howManyNumbers, min, max) {
 };
 var result = generateArrayOfArrays();
 console.log(result);
-// Pytania:
-// 1. Czy dobrze w ponizszym aliasie dodac znak ?   ???
-// type GenerateArrayOfArrays = (howManyArrays: number, howManyNumbers: number, min: number, max: number) => number[][];
-// 2. Slowo "function" ..
-//// type PaginateArray = (dataEntries: number[], settings: Settings) => number[] | void;
-// const paginateArray: PaginateArray = (dataEntries: number[], settings: Settings): number[] | void => {

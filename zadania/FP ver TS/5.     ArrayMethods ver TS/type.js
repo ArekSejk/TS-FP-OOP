@@ -45,9 +45,6 @@ function doLikeMap(array, callbackFn) {
 // function square(element: number) {
 //     return element * 2;
 // }
-/* Pytania:
-1. Co w przypadku, gdy podamy arr z numberami, a w mapie te numery robimy w stringi i w tablicy je zwracamy? Konflikt
-*/
 //---------------------------------------------------------
 // FILTER
 //zwraca nowy Arr z el.spelniajacymi warunek.       array.filter(function (currentValue, index, arr), thisValue)
@@ -110,6 +107,10 @@ function doLikeReduce(arr, callbackFn, initial) {
     }
     return acc;
 }
+[{ name: 'Pawel', age: 23 }, { name: 'Arek', age: 22 }].reduce(function (acc, el) {
+    acc.push(el.age.toString());
+    return acc;
+}, []);
 // function giveNumber(a: number, b: number):number {
 //     return a + b;
 // }

@@ -16,9 +16,9 @@ function someFn(array, callback) {}*/
 // // MAP
 //Zwraca nową tabele ze zmodyfikowanymi elementami  map(callback(el, index, arr), thisArg)
 
-function doLikeMap<T>(arr: T[], callbackFn: (currVal: T, i: number, arr: T[]) => T): T[] {
+function doLikeMap<T, U>(arr: T[], callbackFn: (currVal: T, i: number, arr: T[]) => U): U[] {
 
-    return arr.reduce((acc: T[], currVal, i, arr) => {
+    return arr.reduce((acc: U[], currVal, i, arr) => {
         acc.push(callbackFn(currVal, i, arr));
         return acc;
     }

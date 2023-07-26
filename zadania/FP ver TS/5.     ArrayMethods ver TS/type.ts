@@ -50,9 +50,9 @@ function dolikeForEach<T>(array: T[], callbackFn: (el: T, i: number, array: T[])
 //tworzy nowy Arr ze zmodyf. kazdym eleme. podanej tabl.    array.map(function (currentValue, index, arr), thisValue)
 
 
-function doLikeMap<T>(array: T[], callbackFn: (el: T, i: number, array: T[]) => T): T[] {
+function doLikeMap<T,U>(array: T[], callbackFn: (el: T, i: number, array: T[]) => U): U[] {
 
-    const newArr: T[] = [];
+    const newArr: U[] = [];
 
     for (let i = 0; i < array.length; i++) newArr.push(callbackFn(array[i], i, array))
 
@@ -63,10 +63,6 @@ function doLikeMap<T>(array: T[], callbackFn: (el: T, i: number, array: T[]) => 
 // function square(element: number) {
 //     return element * 2;
 // }
-
-/* Pytania:
-1. Co w przypadku, gdy podamy arr z numberami, a w mapie te numery robimy w stringi i w tablicy je zwracamy? Konflikt
-*/
 
 
 
@@ -167,15 +163,19 @@ function doLikeEntries<T>(array: T[]): [number, T][] {
 //Zwraca pojedyncza skumulowana wartosc. array.reduce(function (total, currentValue, currentIndex, arr), initialValue)
 
 
-function doLikeReduce<T>(arr: T[], callbackFn: (acc: T, curr: T, currInd: number, arr: T[]) => T, initial?: T): T {
-    let acc = initial ? initial : arr[0];
+function doLikeReduce<T,U>(arr: T[], callbackFn: (acc: U, curr: T, currInd: number, arr: T[]) => U, initial?: U): U {
+    let acc = initial ? initial : arr[0] as unknown as U
 
     for (let i = ((initial) ? 0 : 1); i < arr.length; i++) {
         acc = callbackFn(acc, arr[i], i, arr);
     }
-    return acc;
+    return acc
 }
 
+[{name: 'Pawel', age: 23},{name: 'Arek', age: 22}].reduce((acc, el)=> {
+    acc.push(el.age.toString())
+    return acc
+}, [] as string[])
 
 // function giveNumber(a: number, b: number):number {
 //     return a + b;

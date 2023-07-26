@@ -165,5 +165,6 @@ function filterWith(array: object[], phrase: string): object[] | [] {
     return przeszukaj(array, phrase)
 }
 
+
 const fin = filterWith(data, "female")
 console.log(fin);
