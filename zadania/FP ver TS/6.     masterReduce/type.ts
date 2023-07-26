@@ -16,21 +16,69 @@ function someFn(array, callback) {}*/
 // // MAP
 //Zwraca nową tabele ze zmodyfikowanymi elementami  map(callback(el, index, arr), thisArg)
 
+// type CallbackLikeMap = (current: string, i: number, array: string[]) => string;
+
+// type DoLikeMap = <T>(array: T[], callbackFunction: CallbackLikeMap) => T[];
+
+// function doLikeMap(arr:string[], callbackFn:CallbackLikeMap):string[] {
+
+//     return arr.reduce((acc: string[], currVal: string, i: number, arr: string[]) => {
+//         acc.push(callbackFn(currVal, i, arr));
+//         return acc
+//     }
+//         , [])
+// }
+
+// function square(el: string) {
+//     return el.toUpperCase();
+// }
+// console.log(doLikeMap(['a','b','c'],square))
 
 
-function doLikeMap(arr, callbackFn) {
 
-    return arr.reduce((acc, currVal, i, arr) => {
+
+
+type CallbackLikeMap = <T>(current: T, i: number, array: T[]) => T;
+
+// type DoLikeMap = <T>(array: T[], callbackFunction: CallbackLikeMap) => T[];
+
+// function doLikeMap<T>(arr: T[], callbackFn: (curr: T, i: number, arr: T[]) => T): T[] { DZIALA
+function doLikeMap<T>(arr: T[], callbackFn: CallbackLikeMap):T[] {
+
+    return arr.reduce((acc: T[], currVal: T, i: number, arr: T[]) => {
         acc.push(callbackFn(currVal, i, arr));
         return acc
     }
         , [])
 }
 
+function square(el: string, i:number, arr: string[]) {
+    return el.toUpperCase();
+}
+console.log(doLikeMap(['a','b','c'],square))
 
-// function square(el) {
-//     return el.toUpperCase();
-// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

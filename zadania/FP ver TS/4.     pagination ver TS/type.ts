@@ -21,26 +21,32 @@ const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 const settings = { actualPageIdx: 1, entriesOnPage: 2 };
 
 
-interface Isettings {
+
+interface Settings {
     actualPageIdx: number;
     entriesOnPage: number;
 }
 
-const paginateArray = (dataEntries: number[], settings: Isettings): number[] | void => {
+type PaginateArray = (dataEntries: number[], settings: Settings) => number[] | void;
+
+
+const paginateArray: PaginateArray = (dataEntries: number[], settings: Settings): number[] | void => {
 
     if (!Array.isArray(dataEntries)) return;
-
     if (!dataEntries.every(el => typeof el == 'number')) return;
-
     if (!dataEntries.every(el => Number.isInteger(el))) return;
-
-    // if (settings.actualPageIdx < 0) return;
-    //if (settings.actualPgeInd + settings.entruesOnPage > settings.actualPageInx.legth) return.
+    if (settings.entriesOnPage > dataEntries.length) return;
+    if (settings.actualPageIdx < 0 || settings.entriesOnPage < 0) return;
+    if (settings.actualPageIdx * settings.entriesOnPage >= dataEntries.length) return;
 
     const start = (settings.actualPageIdx * settings.entriesOnPage);
 
     return dataEntries.slice(start, start + settings.entriesOnPage)
 }
-console.log(paginateArray(data, settings))
 
 
+/* error TS2550: Property 'isInteger' does not exist on type 'NumberConstructor'.Do you need to change your target library ? Try changing the 'lib' compiler option to 'es2015' or later.
+
+ if (!dataEntries.every(el => Number.isInteger(el))) return;
+
+ */

@@ -12,32 +12,37 @@ const result3 = getMyAge(1990); //wyniki wszystkich result mają być identyczne
 
 type InputAccepted = Date | number | string;
 
-function getMyAge(input: InputAccepted): number | void {
+type GetMyAge = (Input: InputAccepted) => number | void;
+
+
+
+const getMyAge: GetMyAge= function (input: InputAccepted): number | void {
 
     const currentYear = new Date().getFullYear();
 
-    // if (typeof input.getFullYear === 'function') {
-    if (input instanceof Date && !isNaN(input)){
+    if (typeof input === 'number') {
+        if (input >= currentYear) return;
 
-        if (input.getFullYear() >= currentYear) return;
-
-        return currentYear - input.getFullYear();
+        return currentYear - input;
     }
 
-    if ((typeof input === 'number' || typeof input === 'string') && /^[0-9]{4}$/.test(input)) {
+    if (typeof input === 'string' && /^[0-9]{4}$/.test(input)) {
         if (Number(input) >= currentYear) return;
 
         return currentYear - Number(input);
     }
 
+    if (input instanceof Date) {//gdy wpisze blednie w inpucie np. getMyAge(new Date(2100, "a"))to wyskoczy NaN w consoli, dlatego powinienem jeszcze zwalidowac zeby sie upewnic. W zwyklej js to !isNaN(input), a tu spr czy to na bank data:
+        if (typeof input.getFullYear() !== 'function') return;
+      
+        if (input.getFullYear() >= currentYear) return;
+
+        return currentYear - input.getFullYear();
+    }
+
     return;
-};
-
-
-
-
-
-const myAge = getMyAge(1987);
+}
+const myAge = getMyAge(new Date(2100));
 console.log(myAge)
 
 
@@ -48,6 +53,6 @@ console.log(myAge)
 /* Ad1. WALIDACJA Date() -------
 Zamiast (typeof input.getFullYear === 'function') spotykałem się również z poniższymi walidacjami, które można użyć na równi:
 - if(typeof Date.parse(input))...
-- if(input instanceof Date && !isNaN(one))
+- if(input instanceof Date && !isNaN(input))
 */
 

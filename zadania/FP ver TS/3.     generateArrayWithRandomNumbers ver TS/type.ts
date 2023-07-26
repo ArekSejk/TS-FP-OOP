@@ -6,20 +6,14 @@ function generateArrayWithRandomNumbers(howManyNumbers = 10, min = 1, max = 10) 
 // [1,5,4,5,7,9,1,10,5,4]
 function generateArrayOfArrays(howManyArrays = 10, howManyNumbers = 10, min = 1, max = 10) {}
 // 10 arrayów z 10 liczbami z zakresu od 1 do 10*/
+//--------------------------------------------------------------------
 
 
 
+type GenerateArrayWithRandomNumbers = (howManyNumbers: number, min: number, max: number) => number[];
 
 
-
-
-// Pytanie: Jak na przykladzie ponizszej funkcji uzyc ponizszy alias?
-
-type Ifunct = (howManyNumbers: number, min: number, max: number) => number[];
-
-
-
-function generateArrayWithRandomNumbers(howManyNumbers: number = 10, min: number = 1, max: number = 10): number[] {
+const generateArrayWithRandomNumbers: GenerateArrayWithRandomNumbers = function (howManyNumbers: number = 10, min: number = 1, max: number = 10): number[] {
 
     const arr: number[] = [];
 
@@ -32,16 +26,28 @@ function generateArrayWithRandomNumbers(howManyNumbers: number = 10, min: number
 
 
 
-function generateArrayOfArrays(howManyArrays: number = 10, howManyNumbers: number = 10, min: number = 1, max: number = 10): number[][] {
+
+type GenerateArrayOfArrays = (howManyArrays?: number, howManyNumbers?: number, min?: number, max?: number) => number[][];
+
+
+const generateArrayOfArrays: GenerateArrayOfArrays = function (howManyArrays: number = 10, howManyNumbers: number = 10, min: number = 1, max: number = 10): number[][] {
 
     const arrOfArr: number[][] = [];
 
     for (let k = 1; k <= howManyArrays; k++) arrOfArr.push(generateArrayWithRandomNumbers(howManyNumbers, min, max));
-    //powyzej zapisane param. funkcji callback sa bez min i max. to jedynie w naglowku funkcji
 
     return arrOfArr;
 }
+
+
 const result = generateArrayOfArrays();
 console.log(result)
 
 
+
+// Pytania:
+// 1. Czy dobrze w ponizszym aliasie dodac znak ?   ???
+// type GenerateArrayOfArrays = (howManyArrays: number, howManyNumbers: number, min: number, max: number) => number[][];
+// 2. Slowo "function" ..
+//// type PaginateArray = (dataEntries: number[], settings: Settings) => number[] | void;
+// const paginateArray: PaginateArray = (dataEntries: number[], settings: Settings): number[] | void => {

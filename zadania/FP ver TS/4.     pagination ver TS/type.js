@@ -22,9 +22,17 @@ var paginateArray = function (dataEntries, settings) {
         return;
     if (!dataEntries.every(function (el) { return Number.isInteger(el); }))
         return;
-    // if (settings.actualPageIdx < 0) return;
-    //if (settings.actualPgeInd + settings.entruesOnPage > settings.actualPageInx.legth) return.
+    if (settings.entriesOnPage > dataEntries.length)
+        return;
+    if (settings.actualPageIdx < 0 || settings.entriesOnPage < 0)
+        return;
+    if (settings.actualPageIdx * settings.entriesOnPage >= dataEntries.length)
+        return;
     var start = (settings.actualPageIdx * settings.entriesOnPage);
     return dataEntries.slice(start, start + settings.entriesOnPage);
 };
-console.log(paginateArray(data, settings));
+/* error TS2550: Property 'isInteger' does not exist on type 'NumberConstructor'.Do you need to change your target library ? Try changing the 'lib' compiler option to 'es2015' or later.
+
+ if (!dataEntries.every(el => Number.isInteger(el))) return;
+
+ */

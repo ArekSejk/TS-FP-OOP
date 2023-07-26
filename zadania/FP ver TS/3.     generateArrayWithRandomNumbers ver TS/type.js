@@ -6,7 +6,8 @@ function generateArrayWithRandomNumbers(howManyNumbers = 10, min = 1, max = 10) 
 // [1,5,4,5,7,9,1,10,5,4]
 function generateArrayOfArrays(howManyArrays = 10, howManyNumbers = 10, min = 1, max = 10) {}
 // 10 arrayów z 10 liczbami z zakresu od 1 do 10*/
-function generateArrayWithRandomNumbers(howManyNumbers, min, max) {
+//--------------------------------------------------------------------
+var generateArrayWithRandomNumbers = function (howManyNumbers, min, max) {
     if (howManyNumbers === void 0) { howManyNumbers = 10; }
     if (min === void 0) { min = 1; }
     if (max === void 0) { max = 10; }
@@ -15,8 +16,8 @@ function generateArrayWithRandomNumbers(howManyNumbers, min, max) {
         arr.push(Math.floor(Math.random() * (max - min + 1) + min));
     }
     return arr;
-}
-function generateArrayOfArrays(howManyArrays, howManyNumbers, min, max) {
+};
+var generateArrayOfArrays = function (howManyArrays, howManyNumbers, min, max) {
     if (howManyArrays === void 0) { howManyArrays = 10; }
     if (howManyNumbers === void 0) { howManyNumbers = 10; }
     if (min === void 0) { min = 1; }
@@ -24,8 +25,13 @@ function generateArrayOfArrays(howManyArrays, howManyNumbers, min, max) {
     var arrOfArr = [];
     for (var k = 1; k <= howManyArrays; k++)
         arrOfArr.push(generateArrayWithRandomNumbers(howManyNumbers, min, max));
-    //powyzej zapisane param. funkcji callback sa bez min i max. to jedynie w naglowku funkcji
     return arrOfArr;
-}
+};
 var result = generateArrayOfArrays();
 console.log(result);
+// Pytania:
+// 1. Czy dobrze w ponizszym aliasie dodac znak ?   ???
+// type GenerateArrayOfArrays = (howManyArrays: number, howManyNumbers: number, min: number, max: number) => number[][];
+// 2. Slowo "function" ..
+//// type PaginateArray = (dataEntries: number[], settings: Settings) => number[] | void;
+// const paginateArray: PaginateArray = (dataEntries: number[], settings: Settings): number[] | void => {

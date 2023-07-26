@@ -34,9 +34,14 @@ const dolikeForEach = (array, callbackFn) => {
     }
 };
 
-// function makeBigLetters(element) {
-//     return element.toUpperCase();
-// }
+function makeBigLetters(element) {
+    console.log(element.toUpperCase())
+}
+
+let tab = ['a', 'b', 'c']
+
+dolikeForEach(tab, makeBigLetters)
+
 
 //---------------------------------------------------------
 

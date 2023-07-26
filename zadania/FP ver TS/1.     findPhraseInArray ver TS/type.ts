@@ -41,7 +41,6 @@ const inputData: string[] = ['zerowy', 'pierwszy', 'drugi', 'trzeci', 'czwarty',
 
 type StringCoordinates = [el: string, index: number][];
 
-
 const findPhraseInArray = (array: string[], phrase: string): string | StringCoordinates => {
 
     let i = 0;      
