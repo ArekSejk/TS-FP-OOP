@@ -233,6 +233,7 @@ class Ziom implements Test {
     }
 }
 
+
 const arek = new Ziom('Arek', 20)
 // console.log(arek.getName())
 // console.log(arek.age)

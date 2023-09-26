@@ -16,7 +16,7 @@ arr1.push(4);//.. arr z numberami
 // arr1.push('lola') error
 
 const mixArr = [1, 'dupa', 3]//uzna ze to arr
-mixArr.push(5)// z nr/string/booleans
+mixArr.push(5)// z nr/string
 mixArr.push('tak')
 // mixArr.push(true) blad , bo uwzglednia w tej tablicy tylko te rodzaje ktore wystapia losowo w pierwotnej tablicy. nie ma znaczenie tutaj index i polozenie
 console.log(mixArr)
